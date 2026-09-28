@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free QR Code Generator | EasyUtilis</title>
+    <meta name="description" content="Create high-resolution QR codes instantly for URLs, text, and WiFi. 100% free, permanent, and no registration required on EasyUtilis.">
+    
+    <!-- ADSTERRA SOCIAL BAR -->
+    <script src="https://pl31550215.profitableratecpmnetwork.com/5f/93/3c/5f933ce7e5746e46d8f9dfc3986d8de6.js"></script>
+
+    <!-- QR Code Library CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: #f8fafc; color: #0f172a; line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; }
+        
+        /* Navbar Branding */
+        header { background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 15px 20px; }
+        .nav-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .brand { font-size: 1.3rem; font-weight: 800; color: #2563eb; text-decoration: none; }
+        .brand span { color: #0f172a; }
+
+        .main-wrapper { max-width: 700px; margin: 40px auto; width: 100%; padding: 0 15px; }
+        .tool-header { text-align: center; margin-bottom: 25px; }
+        h1 { font-size: 2rem; color: #0f172a; font-weight: 800; margin-bottom: 8px; }
+        p.tagline { color: #64748b; font-size: 1rem; }
+
+        /* Tool Card */
+        .card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+
+        .input-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.9rem; color: #334155; margin-bottom: 8px; font-weight: 600; }
+        input[type="text"] { width: 100%; padding: 14px; border-radius: 10px; border: 1px solid #cbd5e1; font-size: 1rem; outline: none; transition: border-color 0.2s; }
+        input[type="text"]:focus { border-color: #2563eb; }
+
+        .btn-generate { width: 100%; background: #2563eb; color: #fff; border: none; padding: 14px; font-size: 1rem; font-weight: 700; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
+        .btn-generate:hover { background: #1d4ed8; }
+
+        /* QR Output Area */
+        .qr-output-container { display: none; margin-top: 30px; padding-top: 25px; border-top: 1px solid #e2e8f0; text-align: center; }
+        #qrcode { display: inline-block; background: #ffffff; padding: 16px; border: 1px solid #e2e8f0; border-radius: 12px; margin-bottom: 20px; }
+        #qrcode img { margin: 0 auto; }
+
+        .btn-download { display: inline-block; width: 100%; background: #10b981; color: #ffffff; text-decoration: none; padding: 15px; font-size: 1.05rem; font-weight: 700; border-radius: 10px; transition: background 0.2s; text-align: center; }
+        .btn-download:hover { background: #059669; }
+
+        /* SEO Article */
+        .seo-content { margin-top: 40px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 30px; }
+        .seo-content h2 { color: #0f172a; font-size: 1.25rem; margin: 20px 0 10px 0; }
+        .seo-content p { color: #475569; font-size: 0.95rem; margin-bottom: 15px; }
+
+        footer { text-align: center; padding: 20px; color: #94a3b8; font-size: 0.85rem; border-top: 1px solid #e2e8f0; margin-top: 50px; background: #fff; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="https://easyutilis.github.io" class="brand">Easy<span>Utilis</span></a>
+        </div>
+    </header>
+
+    <div class="main-wrapper">
+        <div class="tool-header">
+            <h1>Free Online QR Code Generator</h1>
+            <p class="tagline">Create permanent, high-quality QR codes in seconds.</p>
+        </div>
+
+        <main class="card">
+            <div class="input-group">
+                <label for="qrText">Enter Website URL or Text:</label>
+                <input type="text" id="qrText" placeholder="https://example.com" value="https://example.com">
+            </div>
+            
+            <button class="btn-generate" onclick="generateQR()">Generate QR Code</button>
+
+            <div class="qr-output-container" id="qrOutput">
+                <div id="qrcode"></div>
+                
+                <!-- SMARTLINK SUR LE TÉLÉCHARGEMENT -->
+                <a href="https://www.profitableratecpmnetwork.com/pr68m5yg?key=9db01121f3c7446947a74aebf543d0e1" class="btn-download" target="_blank" rel="nofollow" onclick="triggerDownload()">
+                    Download HD QR Code (PNG)
+                </a>
+            </div>
+        </main>
+
+        <!-- ADSTERRA NATIVE BANNER -->
+        <div style="margin: 30px 0; min-height: 50px;">
+            <script async="async" data-cfasync="false" src="https://pl31550216.profitableratecpmnetwork.com/a7fc88405e5e46564a162bd14e875a0a/invoke.js"></script>
+            <div id="container-a7fc88405e5e46564a162bd14e875a0a"></div>
+        </div>
+
+        <article class="seo-content">
+            <h2>Why Use EasyUtilis QR Code Generator?</h2>
+            <p>Our free QR code tool allows you to create scannable QR codes instantly. No registration, no hidden fees, and no expiration dates. Perfect for personal or business use.</p>
+
+            <h2>How to generate a QR code?</h2>
+            <p>1. Type or paste your URL or text in the box above.<br>
+            2. Click <strong>Generate QR Code</strong>.<br>
+            3. Download your high-resolution PNG file ready for printing or sharing.</p>
+        </article>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 EasyUtilis. Free online web tools for everyday tasks.</p>
+    </footer>
+
+    <script>
+        let qrcodeObj = null;
+
+        function generateQR() {
+            const inputVal = document.getElementById("qrText").value.trim();
+            if(!inputVal) return alert("Please enter text or a link!");
+
+            const qrContainer = document.getElementById("qrcode");
+            qrContainer.innerHTML = "";
+
+            qrcodeObj = new QRCode(qrContainer, {
+                text: inputVal,
+                width: 180,
+                height: 180,
+                colorDark : "#000000",
+                colorLight : "#ffffff",
+                correctLevel : QRCode.CorrectLevel.H
+            });
+
+            document.getElementById("qrOutput").style.display = "block";
+        }
+
+        window.onload = function() { generateQR(); };
+
+        function triggerDownload() {
+            setTimeout(() => {
+                const img = document.querySelector("#qrcode img");
+                if (img) {
+                    const link = document.createElement("a");
+                    link.href = img.src;
+                    link.download = "qrcode-easyutilis.png";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
