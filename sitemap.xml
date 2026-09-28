@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Page d'accueil (Hub principal) -->
+  <url>
+    <loc>https://easyutilis.github.io/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Outil 1 : QR Code Generator -->
+  <url>
+    <loc>https://easyutilis.github.io/qrcode-generator/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Outil 2 : YouTube to MP3 -->
+  <url>
+    <loc>https://easyutilis.github.io/ytmp3/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Outil 3 : Word Counter -->
+  <url>
+    <loc>https://easyutilis.github.io/word-counter/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Outil 4 : Image Converter -->
+  <url>
+    <loc>https://easyutilis.github.io/image-converter/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
