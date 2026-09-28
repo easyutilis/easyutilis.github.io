@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://easyutilis.github.io/sitemap.xml
