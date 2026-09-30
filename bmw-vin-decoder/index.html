@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW VIN Decoder — EasyUtilis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bmw: '#0066B1',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col items-center p-4 sm:p-8">
+
+    <header class="max-w-4xl w-full text-center my-8">
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+            BMW <span class="text-bmw">VIN Decoder</span>
+        </h1>
+        <p class="mt-3 text-slate-400">Décodez instantanément la liste exacte des options d'usine (S-SALAPA) de votre BMW.</p>
+    </header>
+
+    <main class="max-w-4xl w-full space-y-6">
+        <!-- Input Form -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl flex flex-col sm:flex-row gap-3">
+            <input 
+                type="text" 
+                id="vinInput" 
+                placeholder="Entrez votre VIN (ex: WBA5U91070FH43863 ou FH43863)" 
+                class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-lg text-white placeholder-slate-500 focus:outline-none focus:border-bmw uppercase transition"
+                maxlength="17"
+            >
+            <button 
+                onclick="decodeVIN()" 
+                id="searchBtn"
+                class="bg-bmw hover:bg-blue-600 text-white font-semibold px-8 py-3 rounded-xl transition duration-200 flex items-center justify-center shrink-0">
+                Décoder
+            </button>
+        </div>
+
+        <!-- Loader -->
+        <div id="loader" class="hidden text-center py-12">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-bmw border-t-transparent"></div>
+            <p class="mt-3 text-slate-400 text-sm">Interrogation des serveurs BMW en cours...</p>
+        </div>
+
+        <!-- Results Block -->
+        <div id="results" class="hidden space-y-6">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <div>
+                        <h2 id="vinTitle" class="text-2xl font-bold text-white">VIN: --</h2>
+                        <p id="optionsCount" class="text-slate-400 text-sm">0 options d'usine détectées</p>
+                    </div>
+                    <span class="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3 py-1 rounded-full text-xs font-semibold">
+                        S-SALAPA Verified
+                    </span>
+                </div>
+
+                <!-- Options List -->
+                <div class="mt-6">
+                    <h3 class="text-lg font-semibold text-white mb-4">Équipements & Options d'Usine</h3>
+                    <div id="optionsList" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <!-- Dynamic Options injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Remplace cette URL par celle de ton Cloudflare Worker générée à l'Étape 1
+        const WORKER_URL = "https://bmw-vin-proxy.TON_PSEUDO.workers.dev";
+
+        async function decodeVIN() {
+            const vin = document.getElementById('vinInput').value.trim();
+            if (!vin) return;
+
+            const loader = document.getElementById('loader');
+            const results = document.getElementById('results');
+            const searchBtn = document.getElementById('searchBtn');
+
+            loader.classList.remove('hidden');
+            results.classList.add('hidden');
+            searchBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${WORKER_URL}?vin=${encodeURIComponent(vin)}`);
+                const data = await response.json();
+
+                if (response.ok && data.options) {
+                    document.getElementById('vinTitle').innerText = `VIN: ${data.vin}`;
+                    document.getElementById('optionsCount').innerText = `${data.optionsCount} options d'usine détectées`;
+
+                    const container = document.getElementById('optionsList');
+                    container.innerHTML = '';
+
+                    data.options.forEach(opt => {
+                        const item = document.createElement('div');
+                        item.className = 'flex items-center justify-between p-3 bg-slate-950 border border-slate-800/80 rounded-xl';
+                        item.innerHTML = `
+                            <span class="text-slate-200 text-sm font-medium pr-2">${opt.description}</span>
+                            <span class="font-mono text-xs text-blue-400 bg-blue-950/60 px-2 py-1 rounded border border-blue-800/40 shrink-0">
+                                ${opt.code}
+                            </span>
+                        `;
+                        container.appendChild(item);
+                    });
+
+                    results.classList.remove('hidden');
+                } else {
+                    alert(data.error || "Impossible de récupérer les options pour ce VIN.");
+                }
+            } catch (err) {
+                console.error(err);
+                alert("Erreur lors de la connexion au serveur.");
+            } finally {
+                loader.classList.add('hidden');
+                searchBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
